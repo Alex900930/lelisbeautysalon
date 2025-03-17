@@ -4,10 +4,12 @@ import Gallery from '@/components/Gallery';
 import Testimonials from '@/components/Testimonials';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
+import Header from '@/components/Header';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#FDF8F5]">
+    <div className="min-h-screen">
+      <Header />
       <Hero />
       <Services />
       <Gallery />

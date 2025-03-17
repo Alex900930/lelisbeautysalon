@@ -1,18 +1,22 @@
+"use client"
 import { motion } from "framer-motion";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#1A0F0A] text-white py-12 px-4">
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+    <footer className="relative py-12 px-4">
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-900/90 via-purple-900/90 to-pink-900/90 backdrop-blur-lg" />
+      <div className="relative z-10 max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <h3 className="text-xl mb-4 font-playfair">Horário de Funcionamento</h3>
-          <p className="mb-2">Segunda a Sexta: 9h às 20h</p>
-          <p className="mb-2">Sábado: 9h às 18h</p>
-          <p>Domingo: Fechado</p>
+          <h3 className="text-xl mb-4 font-playfair uppercase tracking-wide bg-gradient-to-r from-blue-200 to-gray-200 text-transparent bg-clip-text">
+            Horário de Funcionamento
+          </h3>
+          <p className="font-montserrat text-white/90 mb-2">Segunda a Sexta: 9h às 20h</p>
+          <p className="font-montserrat text-white/90 mb-2">Sábado: 9h às 18h</p>
+          <p className="font-montserrat text-white/90">Domingo: Fechado</p>
         </motion.div>
 
         <motion.div
@@ -21,9 +25,11 @@ export default function Footer() {
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
         >
-          <h3 className="text-xl mb-4 font-playfair">Contato</h3>
-          <p className="mb-2">Tel: (11) 99999-9999</p>
-          <p className="mb-4">Email: contato@karlalelis.com.br</p>
+          <h3 className="text-xl mb-4 font-playfair bg-gradient-to-r from-blue-200 to-gray-200 text-transparent bg-clip-text">
+            Contato
+          </h3>
+          <p className="mb-2 text-white/90">Tel: (11) 99999-9999</p>
+          <p className="mb-4 text-white/90">Email: contato@karlalelis.com.br</p>
           <div className="flex gap-4">
             <motion.a
               href="https://instagram.com/karlalelis"
@@ -56,15 +62,17 @@ export default function Footer() {
           viewport={{ once: true }}
           transition={{ delay: 0.4 }}
         >
-          <h3 className="text-xl mb-4 font-playfair">Endereço</h3>
-          <p className="mb-2">Rua dos Andradas, 123</p>
-          <p className="mb-2">Centro - São Paulo, SP</p>
-          <p>CEP: 01234-567</p>
+          <h3 className="text-xl mb-4 font-playfair bg-gradient-to-r from-blue-200 to-gray-200 text-transparent bg-clip-text">
+            Endereço
+          </h3>
+          <p className="mb-2 text-white/90">Rua dos Andradas, 123</p>
+          <p className="mb-2 text-white/90">Centro - São Paulo, SP</p>
+          <p className="text-white/90">CEP: 01234-567</p>
         </motion.div>
       </div>
       
       <motion.div 
-        className="text-center mt-12 text-sm text-white/60"
+        className="text-center mt-12 text-sm text-white/80"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}

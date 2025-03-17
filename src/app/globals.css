@@ -24,3 +24,31 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply text-white/90;
+  }
+  
+  section {
+    @apply overflow-hidden;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-white/10 backdrop-blur-md;
+  }
+  
+  .gradient-border {
+    @apply bg-gradient-to-br from-blue-900/50 via-purple-900/50 to-pink-900/50 p-[1px];
+  }
+  
+  .gradient-text {
+    @apply bg-gradient-to-r from-blue-200 to-pink-200 text-transparent bg-clip-text;
+  }
+}

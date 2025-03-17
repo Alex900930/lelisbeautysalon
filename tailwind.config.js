@@ -7,8 +7,19 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
+        montserrat: ['var(--font-montserrat)'],
         playfair: ['var(--font-playfair)'],
-        lora: ['var(--font-lora)'],
+        cormorant: ['var(--font-cormorant)'],
+      },
+      colors: {
+        primary: {
+          DEFAULT: '#D4AF37',
+          dark: '#B4941F',
+        },
+        secondary: {
+          DEFAULT: '#2C1810',
+          light: '#4A2A1D',
+        },
       },
     },
   },
