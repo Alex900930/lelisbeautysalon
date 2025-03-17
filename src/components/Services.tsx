@@ -1,22 +1,23 @@
 'use client'
 import Image from "next/image";
 import { motion } from "framer-motion";
+import BeforeAfter from "./BeforeAfter";
 
 const services = [
   {
     image: "/imagenCabelo.png",
-    title: "Tratamento Capilar",
+    title: "Realinhamento 💇✨",
     description: "Cortes, coloração, hidratação e mais"
   },
   {
     image: "/imagenMackup.png",
-    title: "Maquiagem",
-    description: "Maquiagem social e para eventos"
+    title: "Botoxx ✨",
+    description: "Botoxx ✨ para eventos"
   },
   {
     image: "/imagenManicure.png",
-    title: "Manicure e Pedicure",
-    description: "Cuidados completos para suas mãos e pés"
+    title: "Glow Upp de hoje ✨",
+    description: "Glow Upp"
   }
 ];
 
@@ -66,6 +67,8 @@ export default function Services() {
             </motion.div>
           ))}
         </div>
+
+        <BeforeAfter />
       </div>
     </section>
   );

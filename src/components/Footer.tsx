@@ -71,15 +71,14 @@ export default function Footer() {
         </motion.div>
       </div>
       
-      <motion.div 
-        className="text-center mt-12 text-sm text-white/80"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ delay: 0.6 }}
-      >
-        <p>© 2024 Karla Lelis Salão de Beleza. Todos os direitos reservados.</p>
-      </motion.div>
+      <motion.div
+      className="text-center mt-12 text-sm text-white/80"
+      initial={{ opacity: 0 }} // Estado inicial: invisible
+      animate={{ opacity: 1 }} // Estado final: visible
+      transition={{ delay: 0.6, duration: 1 }} // Retraso y duración de la animación
+    >
+      <p>© 2025 Karla Lelis Salão de Beleza. Todos os direitos reservados.</p>
+    </motion.div>
     </footer>
   );
 } 

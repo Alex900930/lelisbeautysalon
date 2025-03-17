@@ -9,7 +9,7 @@ const galleryImages = [
   {
     id: 1,
     src: "/images/gallery/1.png",
-    title: "Transformação Capilar",
+    title: "Realinhamento 💇✨",
     description: "Coloração e tratamento"
   },
   {
