@@ -1,6 +1,6 @@
 'use client';
 import { motion } from "framer-motion";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 export default function BeforeAfter() {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -16,6 +16,22 @@ export default function BeforeAfter() {
       setIsPlaying(!isPlaying);
     }
   };
+
+  // Escuchar el evento "ended" del video
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video) {
+      const handleVideoEnd = () => {
+        setIsPlaying(false); // Actualizar el estado cuando el video termine
+      };
+      video.addEventListener("ended", handleVideoEnd);
+
+      // Limpiar el evento al desmontar el componente
+      return () => {
+        video.removeEventListener("ended", handleVideoEnd);
+      };
+    }
+  }, []);
 
   return (
     <motion.div
@@ -70,7 +86,7 @@ export default function BeforeAfter() {
                 Transformação Top
               </p>
               <p className="text-sm text-white/70">
-                 Liso belíssimo ✨
+               Realinhamento ✨
               </p>
             </div>
           </div>

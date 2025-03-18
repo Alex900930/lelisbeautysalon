@@ -9,44 +9,56 @@ const galleryImages = [
   {
     id: 1,
     src: "/images/gallery/1.png",
-    title: "Realinhamento 💇✨",
-    description: "Coloração e tratamento"
+    title: "ILUMINADO ✨",
+    description: "Coloração personalizada com tratamento intensivo para brilho e saúde dos fios."
   },
   {
     id: 2,
     src: "/images/gallery/2.png",
-    title: "Penteado para Festa",
-    description: "Penteado elegante"
+    title: "REALINHAMENTO ✨",
+    description: "Realinhamento capilar para fios lisos e sedosos, com acabamento perfeito."
   },
   {
     id: 3,
     src: "/images/gallery/3.png",
-    title: "Maquiagem Social",
-    description: "Make para eventos"
+    title: "MODELADO ✨",
+    description: "Modelagem profissional para eventos especiais, com cortes e penteados exclusivos."
   },
   {
     id: 4,
     src: "/images/gallery/4.png",
-    title: "Corte Moderno",
-    description: "Corte e finalização"
+    title: "BOTOX CAPILAR ✨",
+    description: "Tratamento com Botox Capilar para hidratação profunda e reparação dos fios."
   },
   {
     id: 5,
     src: "/images/gallery/5.png",
-    title: "Nail Art",
-    description: "Design de unhas"
+    title: "LOIRO LONGO ✨",
+    description: "Loiro dos sonhos com mechas cuidadosamente aplicadas para um efeito natural e radiante."
   },
   {
     id: 6,
     src: "/images/gallery/6.png",
-    title: "Mechas",
-    description: "Mechas e hidratação"
+    title: "VERMELHO CEREJA ✨",
+    description: "Vermelho cereja vibrante, com tonalidade intensa e duradoura."
+  },
+  {
+    id: 7,
+    src: "/images/gallery/7.png",
+    title: "PLATINADO ✨",
+    description: "Platinado moderno com reflexos brilhantes e cuidados especiais para fios saudáveis."
   },
   {
     id: 8,
     src: "/images/gallery/8.png",
-    title: "Make Noiva",
-    description: "Maquiagem para noivas"
+    title: "LOIRO CORTO ✨",
+    description: "Loiro curto e sofisticado, com cortes modernos e textura definida."
+  },
+  {
+    id: 9,
+    src: "/images/gallery/9.png",
+    title: "TRATAMENTO SMOOTHING ✨",
+    description: "Smoothing para fios alinhados, sem volume e com brilho intenso."
   }
 ];
 
