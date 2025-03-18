@@ -8,24 +8,28 @@ const testimonials = [
     text: "Melhor salão que já frequentei! A Karla é uma profissional incrível e super atenciosa.",
     author: "Maria Silva",
     image: "/images/avatars/avatar1.png",
+    resultImage: "/images/results/result1.png",
     rating: 5
   },
   {
     text: "Sempre saio do salão me sentindo mais bonita e confiante. Equipe maravilhosa!",
     author: "Ana Santos",
     image: "/images/avatars/avatar2.png",
+    resultImage: "/images/results/result2.png",
     rating: 5
   },
   {
     text: "Ambiente acolhedor e profissionais muito competentes. Super recomendo!",
     author: "Carolina Oliveira",
     image: "/images/avatars/avatar3.png",
+    resultImage: "/images/results/result3.png",
     rating: 5
   },
   {
     text: "Atendimento excepcional e resultados sempre perfeitos!",
     author: "Patricia Lima",
     image: "/images/avatars/avatar4.png",
+    resultImage: "/images/results/result4.png",
     rating: 5
   }
 ];
@@ -34,7 +38,7 @@ export default function Testimonials() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-    e.currentTarget.src = "https://via.placeholder.com/64";
+    e.currentTarget.src = "https://via.placeholder.com/400";
   };
 
   const nextTestimonial = () => {
@@ -46,65 +50,80 @@ export default function Testimonials() {
   };
 
   return (
-    <section className="relative py-20 px-4 md:px-8">
+    <section className="relative px-4 py-20 md:px-8">
       {/* Fondo con gradiente suave */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-900/30 via-purple-900/20 to-pink-900/30 backdrop-blur-[2px]" />
-      <div className="relative z-10 max-w-6xl mx-auto">
+      <div className="relative z-10 mx-auto max-w-6xl">
         <motion.h2 
-          className="text-4xl text-center mb-16 font-playfair uppercase tracking-wide bg-gradient-to-r from-blue-200 to-gray-100 text-transparent bg-clip-text"
+          className="mb-16 text-4xl tracking-wide text-center text-transparent uppercase bg-clip-text bg-gradient-to-r from-blue-200 to-gray-100 font-playfair"
         >
           O que Dizem Nossos Clientes
         </motion.h2>
-        <div className="max-w-4xl mx-auto">
+        
+        <div className="max-w-[574px] mx-auto px-4">
           <motion.div 
-            className="bg-gradient-to-br from-white/10 via-white/5 to-white/10 p-[1px] rounded-xl backdrop-blur-md"
+            className="overflow-hidden bg-white rounded-lg shadow-xl"
           >
-            <div className="bg-gradient-to-br from-blue-900/20 via-purple-900/20 to-pink-900/20 p-8 rounded-xl">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="relative w-16 h-16 rounded-full overflow-hidden bg-gradient-to-br from-blue-600 via-purple-600 to-pink-500 p-[2px]">
-                  <div className="relative w-full h-full rounded-full overflow-hidden">
-                    <Image
-                      src={testimonials[currentIndex].image}
-                      alt={testimonials[currentIndex].author}
-                      fill
-                      className="object-cover"
-                      onError={handleImageError}
-                    />
-                  </div>
-                </div>
-                <div>
-                  <p className="font-montserrat font-medium bg-gradient-to-r from-blue-400 to-gray-300 text-transparent bg-clip-text">
-                    {testimonials[currentIndex].author}
-                  </p>
-                  <div className="flex gap-1">
-                    {[...Array(testimonials[currentIndex].rating)].map((_, i) => (
-                      <span key={i} className="text-gradient-to-r from-yellow-400 to-yellow-600">★</span>
-                    ))}
-                  </div>
-                </div>
+            {/* Imagen principal con las dimensiones correctas */}
+            <div className="relative w-full" style={{ aspectRatio: '574/89' }}>
+              <Image
+                src={`/images/results/result${currentIndex + 1}.png`}
+                alt={`Testimonio de ${testimonials[currentIndex].author}`}
+                fill
+                className="object-contain"
+                onError={handleImageError}
+                priority
+              />
+            </div>
+
+            {/* Contenido del testimonio */}
+            <div className="p-4 bg-white">
+              <div className="flex gap-1 mb-2">
+                {[...Array(testimonials[currentIndex].rating)].map((_, i) => (
+                  <span key={i} className="text-pink-500">★</span>
+                ))}
               </div>
-              <p className="text-lg font-cormorant italic leading-relaxed mb-4 text-gray-700">
-                {testimonials[currentIndex].text}
+              
+              <p className="text-gray-900">
+                <span className="text-sm">{testimonials[currentIndex].text}</span>
               </p>
             </div>
           </motion.div>
 
-          <button
-            onClick={prevTestimonial}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 bg-gradient-to-br from-blue-600 via-purple-600 to-pink-500 p-[1px] rounded-full shadow-lg hover:scale-110 transition-transform"
-          >
-            <div className=" w-10 h-10 rounded-full flex items-center justify-center">
-              ←
-            </div>
-          </button>
-          <button
-            onClick={nextTestimonial}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 bg-gradient-to-br from-blue-600 via-purple-600 to-pink-500 p-[1px] rounded-full shadow-lg hover:scale-110 transition-transform"
-          >
-            <div className=" w-10 h-10 rounded-full flex items-center justify-center">
-              →
-            </div>
-          </button>
+          {/* Botones de navegación */}
+          <div className="flex justify-between mt-6">
+            <button
+              onClick={prevTestimonial}
+              className="bg-gradient-to-r from-blue-600 to-pink-500 p-[1px] rounded-full hover:scale-105 transition-transform"
+            >
+              <div className="flex justify-center items-center w-10 h-10 text-white bg-black rounded-full">
+                ←
+              </div>
+            </button>
+            <button
+              onClick={nextTestimonial}
+              className="bg-gradient-to-r from-blue-600 to-pink-500 p-[1px] rounded-full hover:scale-105 transition-transform"
+            >
+              <div className="flex justify-center items-center w-10 h-10 text-white bg-black rounded-full">
+                →
+              </div>
+            </button>
+          </div>
+        </div>
+
+        {/* Indicadores de página */}
+        <div className="flex gap-2 justify-center mt-6">
+          {testimonials.map((_, index) => (
+            <button
+              key={index}
+              className={`w-2 h-2 rounded-full transition-all ${
+                index === currentIndex 
+                  ? 'bg-pink-500 w-4' 
+                  : 'bg-gray-300'
+              }`}
+              onClick={() => setCurrentIndex(index)}
+            />
+          ))}
         </div>
       </div>
     </section>
