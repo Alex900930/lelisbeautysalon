@@ -2,7 +2,6 @@ import Hero from '@/components/Hero';
 import Services from '@/components/Services';
 import Gallery from '@/components/Gallery';
 import Testimonials from '@/components/Testimonials';
-import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import Historia from '@/components/Historia';
@@ -16,7 +15,6 @@ export default function Home() {
       <Gallery />
       <Historia />
       <Testimonials />
-      <Contact />
       <Footer />
     </div>
   );
