@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useState } from "react";
@@ -95,7 +95,14 @@ export default function Gallery() {
                   fill
                   className="object-cover rounded-lg"
                 />
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-600/80 via-purple-600/80 to-pink-500/80 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg flex items-center justify-center">
+                {/* Indicador para móviles */}
+                <div className="absolute inset-0 flex items-center justify-center md:hidden">
+                  <div className="bg-black/50 rounded-full p-2">
+                    <span className="text-white text-sm">Clique para ver mais</span>
+                  </div>
+                </div>
+                {/* Overlay para desktop */}
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-600/80 via-purple-600/80 to-pink-500/80 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg hidden md:flex items-center justify-center">
                   <div className="text-white text-center p-4">
                     <h3 className="text-xl font-montserrat uppercase tracking-wider mb-2 bg-gradient-to-r from-blue-200 to-gray-100 text-transparent bg-clip-text">
                       {image.title}
@@ -134,4 +141,4 @@ export default function Gallery() {
       </Modal>
     </>
   );
-} 
+}
