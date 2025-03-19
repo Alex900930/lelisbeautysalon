@@ -35,24 +35,23 @@ export default function BeforeAfter() {
 
   return (
     <motion.div
-      className="mt-20 px-4 sm:px-6 lg:px-8"
+      className="px-4 mt-20 sm:px-6 lg:px-8"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
     >
-      <h3 className="text-3xl text-center mb-8 font-playfair bg-gradient-to-r from-blue-200 to-gray-100 text-transparent bg-clip-text">
+      <h3 className="mb-8 text-3xl text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-gray-100 font-playfair">
         Transformações Reais ✨
       </h3>
 
-      <div className="max-w-2xl mx-auto">
+      <div className="mx-auto max-w-2xl">
         <div className="bg-gradient-to-br from-white/10 via-white/5 to-white/10 p-[1px] rounded-2xl overflow-hidden">
-          <div className="bg-gradient-to-br from-blue-900/20 via-purple-900/20 to-pink-900/20 p-6 rounded-2xl">
+          <div className="p-6 bg-gradient-to-br rounded-2xl from-blue-900/20 via-purple-900/20 to-pink-900/20">
             {/* Contenedor del video */}
             <div className="relative aspect-[9/16] rounded-xl overflow-hidden group">
               <video
                 ref={videoRef}
-                className="w-full h-full object-cover"
-                poster="/thumbnail-antes-depois.jpg"
+                className="object-cover w-full h-full"
                 onClick={handlePlayPause}
               >
                 <source src="/videos/videopromo.mp4" type="video/mp4" />
@@ -67,7 +66,7 @@ export default function BeforeAfter() {
                 onClick={handlePlayPause}
               >
                 <motion.button
-                  className="bg-white/20 backdrop-blur-sm p-4 rounded-full hover:bg-white/30 transition-colors"
+                  className="p-4 rounded-full backdrop-blur-sm transition-colors bg-white/20 hover:bg-white/30"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                 >
@@ -82,7 +81,7 @@ export default function BeforeAfter() {
 
             {/* Descripción del video */}
             <div className="mt-6 text-center">
-              <p className="text-lg font-montserrat text-white/90 mb-2">
+              <p className="mb-2 text-lg font-montserrat text-white/90">
                 Transformação Top
               </p>
               <p className="text-sm text-white/70">

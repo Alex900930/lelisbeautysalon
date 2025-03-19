@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import Image from "next/image";
+import Link from 'next/link';
 
 const testimonials = [
   {
@@ -38,7 +39,7 @@ export default function Testimonials() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-    e.currentTarget.src = "https://via.placeholder.com/400";
+    e.currentTarget.src = "https://via.placeholder.com/559x88";
   };
 
   const nextTestimonial = () => {
@@ -55,22 +56,23 @@ export default function Testimonials() {
       <div className="absolute inset-0 bg-gradient-to-br from-blue-900/30 via-purple-900/20 to-pink-900/30 backdrop-blur-[2px]" />
       <div className="relative z-10 mx-auto max-w-6xl">
         <motion.h2 
-          className="mb-16 text-4xl tracking-wide text-center text-transparent uppercase bg-clip-text bg-gradient-to-r from-blue-200 to-gray-100 font-playfair"
+          className="mb-8 text-3xl tracking-wide text-center text-transparent uppercase bg-clip-text bg-gradient-to-r from-blue-200 to-gray-100 md:text-4xl font-playfair"
         >
           O que Dizem Nossos Clientes
         </motion.h2>
         
-        <div className="max-w-[574px] mx-auto px-4">
+        <div className="max-w-full md:max-w-[574px] mx-auto px-4">
           <motion.div 
             className="overflow-hidden bg-white rounded-lg shadow-xl"
           >
-            {/* Imagen principal con las dimensiones correctas */}
-            <div className="relative w-full" style={{ aspectRatio: '574/89' }}>
+            {/* Contenedor de la imagen con dimensiones fijas */}
+            <div className="relative w-full h-[88px]" style={{ width: '559px', maxWidth: '100%', margin: '0 auto' }}>
               <Image
                 src={`/images/results/result${currentIndex + 1}.png`}
                 alt={`Testimonio de ${testimonials[currentIndex].author}`}
-                fill
-                className="object-contain"
+                width={559}
+                height={88}
+                className="object-cover"
                 onError={handleImageError}
                 priority
               />
@@ -84,8 +86,8 @@ export default function Testimonials() {
                 ))}
               </div>
               
-              <p className="text-gray-900">
-                <span className="text-sm">{testimonials[currentIndex].text}</span>
+              <p className="text-sm text-gray-900 md:text-base">
+                {testimonials[currentIndex].text}
               </p>
             </div>
           </motion.div>
@@ -125,7 +127,16 @@ export default function Testimonials() {
             />
           ))}
         </div>
+
+        <div className="flex justify-center mt-8">
+          <Link 
+            href="/agendar" 
+            className="px-8 py-3 text-white bg-gradient-to-r from-blue-600 to-pink-500 rounded-full transition-all hover:scale-105"
+          >
+            Agendar Agora
+          </Link>
+        </div>
       </div>
     </section>
   );
-} 
+}
