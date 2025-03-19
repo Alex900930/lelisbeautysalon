@@ -5,9 +5,6 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation'; // Importar useRouter para redirigir
 
-type ValuePiece = Date | null;
-type Value = ValuePiece | [ValuePiece, ValuePiece];
-
 interface FormData {
   nome: string;
   telefone: string;

@@ -18,6 +18,7 @@ export async function POST(request) {
     return NextResponse.json(nuevaCita, { status: 201 });
   } catch (error) {
     return NextResponse.json(
+      console.log(error),
       { error: 'Error al crear la cita' },
       { status: 500 }
     );

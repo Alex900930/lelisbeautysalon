@@ -26,6 +26,7 @@ export async function GET(request) {
     return NextResponse.json(horariosOrdenados, { status: 200 });
   } catch (error) {
     return NextResponse.json(
+      console.log(error),
       { error: 'Error al obtener los horarios' },
       { status: 500 }
     );
