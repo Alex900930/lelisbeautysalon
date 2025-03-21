@@ -3,7 +3,9 @@ import { useState, useEffect } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { motion } from 'framer-motion';
-import { useRouter } from 'next/navigation'; // Importar useRouter para redirigir
+import Link from 'next/link'; // Importar Link para la navegación
+import { ptBR } from 'date-fns/locale/pt-BR'; // Importa la localización
+import { registerLocale, setDefaultLocale } from 'react-datepicker';
 
 interface FormData {
   nome: string;
@@ -16,8 +18,10 @@ interface Horario {
   disponible: boolean;
 }
 
+registerLocale('pt-BR', ptBR); // Registra la localización
+setDefaultLocale('pt-BR');
+
 export default function Agendar() {
-  const router = useRouter(); // Usar useRouter para redirigir
   const [step, setStep] = useState(1);
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [selectedTime, setSelectedTime] = useState<string>('');
@@ -29,51 +33,62 @@ export default function Agendar() {
 
   const handleDateChange = async (date: Date | null) => {
     if (date) {
-      setSelectedDate(date);
       try {
-        const response = await fetch(`/api/horarios?fecha=${date.toISOString()}`);
+        // Convertir a fecha UTC
+        const fechaUTC = new Date(
+          Date.UTC(
+            date.getUTCFullYear(),
+            date.getUTCMonth(),
+            date.getUTCDate()
+          )
+        );
+
+        setSelectedDate(fechaUTC); 
+  
+        const response = await fetch(`/api/horarios?fecha=${fechaUTC.toISOString()}`);
+        
         if (!response.ok) {
-          throw new Error('Erro ao cargar os horários');
+          const errorData = await response.json();
+          throw new Error(errorData.error || 'Erro ao cargar os horários');
         }
+  
         const data = await response.json();
-        console.log("Data del Backend", data);
         setHorarios(data);
         setStep(2);
       } catch (error) {
         console.error('Error al cargar los horarios:', error);
-        alert('Erro ao cargar os horários. Tente novamente mais tarde.');
+        alert( 'Erro ao cargar os horários. Tente novamente mais tarde.');
       }
     }
   };
 
   const handleTimeSelect = async (time: string) => {
+    debugger
     if (selectedDate) {
       try {
         const horarioSeleccionado = horarios.find((h) => h.hora === time);
-        if (horarioSeleccionado) {
-          const response = await fetch(`/api/horarios?fecha=${selectedDate.toISOString()}`);
-          const horariosDisponibles = await response.json();
-          const horarioDisponible = horariosDisponibles.find((h: Horario) => h.id === horarioSeleccionado.id);
-
-          if (!horarioDisponible) {
-            alert('Este horário já foi reservado. Por favor, escolha outro.');
-            return;
-          }
-
-          await fetch('/api/citas', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              fecha: selectedDate.toISOString(),
-              horarioId: horarioSeleccionado.id,
-            }),
-          });
-
-          setSelectedTime(time);
-          setStep(3);
+        
+        if (!horarioSeleccionado) {
+          alert('Horário não encontrado');
+          return;
         }
+
+        const response = await fetch('/api/citas', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            fecha: selectedDate.toISOString(),
+            horarioId: horarioSeleccionado.id,
+          }),
+        });
+
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.error || 'Erro ao reservar o horário');
+        }
+
+        setSelectedTime(time);
+        setStep(3);
       } catch (error) {
         console.error('Error al guardar la cita:', error);
         alert('Erro ao reservar o horário. Tente novamente mais tarde.');
@@ -139,15 +154,22 @@ export default function Agendar() {
   useEffect(() => {
     if (step === 4) {
       const timer = setTimeout(() => {
-        router.push('/'); // Redirigir a la página inicial
+        window.location.href = '/'; // Redirigir a la página inicial
       }, 5000); // 5 segundos
       return () => clearTimeout(timer);
     }
-  }, [step, router]);
+  }, [step]);
 
   return (
     <section className="px-4 py-20 min-h-screen bg-gradient-to-br from-blue-900 via-purple-900 to-pink-900 md:px-8">
       <div className="mx-auto max-w-4xl">
+        {/* Botón para volver a la página de inicio usando Link */}
+        <Link href="/">
+          <button className="p-2 mb-4 text-white bg-gray-600 rounded-full transition-colors hover:bg-pink-500">
+            ← Voltar para a página inicial
+          </button>
+        </Link>
+
         <div className="flex justify-center mb-8">
           {[1, 2, 3, 4].map((num) => (
             <div
@@ -258,7 +280,7 @@ export default function Agendar() {
                 </div>
                 <div>
                   <label className="block mb-2 text-gray-300">
-                    Telefone (+5585989329627)
+                    Telefone (859999999)
                   </label>
                   <input
                     type="tel"

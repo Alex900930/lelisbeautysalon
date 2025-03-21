@@ -10,6 +10,7 @@ const navItems = [
   { name: 'Galeria', href: '#galeria' },
   { name: 'Depoimentos', href: '#depoimentos' },
   { name: 'Contato', href: '#contato' },
+  { name: 'Admin', href: '/login' }, // Nuevo enlace de administración
 ];
 
 export default function Header() {
@@ -21,21 +22,19 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="fixed w-full mx-auto top-0 z-50 bg-gradient-to-r from-blue-900/80 via-purple-900/80 to-pink-900/80 backdrop-blur-sm shadow-lg">
-      <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-transparent"></div>
-      <nav className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20 sm:h-24">
+    <header className="fixed top-0 z-50 mx-auto w-full bg-gradient-to-r shadow-lg backdrop-blur-sm from-blue-900/80 via-purple-900/80 to-pink-900/80">
+      <div className="absolute inset-0 bg-gradient-to-b to-transparent from-black/50"></div>
+      <nav className="relative px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-20 sm:h-24">
+          
           {/* Logo Container */}
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="relative w-36 sm:w-44 md:w-48 h-12 sm:h-16 md:h-20 group"
+            className="relative w-36 h-12 sm:w-44 md:w-48 sm:h-16 md:h-20 group"
           >
-            <Link href="/" className="block w-full h-full relative">
-              {/* Efecto de brillo detrás del logo */}
-              <div className="absolute inset-0 bg-white/5 rounded-xl blur-xl transform group-hover:scale-110 transition-transform duration-500"></div>
-              
-              {/* Logo con efectos mejorados */}
+            <Link href="/" className="block relative w-full h-full">
+              <div className="absolute inset-0 rounded-xl blur-xl transition-transform duration-500 transform bg-white/5 group-hover:scale-110"></div>
               <Image
                 src="/preview.svg"
                 alt="Karla Lelis Salão"
@@ -47,15 +46,12 @@ export default function Header() {
                 priority
                 sizes="(max-width: 640px) 9rem, (max-width: 768px) 11rem, 12rem"
               />
-              
-              {/* Efecto de brillo adicional */}
-              <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 
-                rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute inset-0 bg-gradient-to-r rounded-lg opacity-0 transition-opacity duration-300 from-white/0 via-white/10 to-white/0 group-hover:opacity-100"></div>
             </Link>
           </motion.div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-6 lg:space-x-10">
+          <div className="hidden items-center space-x-6 md:flex lg:space-x-10">
             {navItems.map((item, index) => (
               <motion.div
                 key={item.name}
@@ -65,10 +61,11 @@ export default function Header() {
               >
                 <Link 
                   href={item.href}
-                  className="font-montserrat text-base lg:text-lg text-white/90 hover:text-white 
+                  className={`font-montserrat text-base lg:text-lg text-white/90 hover:text-white 
                     transition-all px-3 py-2 rounded-md hover:bg-white/10
                     relative after:absolute after:bottom-0 after:left-0 after:h-[2px] 
-                    after:w-0 hover:after:w-full after:bg-white after:transition-all"
+                    after:w-0 hover:after:w-full after:bg-white after:transition-all
+                    ${item.name === 'Admin' ? 'border border-white/30 hover:border-white/50' : ''}`} // Estilo especial para Admin
                 >
                   {item.name}
                 </Link>
@@ -78,7 +75,7 @@ export default function Header() {
 
           {/* Mobile Menu Button */}
           <motion.button
-            className="md:hidden p-2 rounded-md hover:bg-white/10 transition-colors"
+            className="p-2 rounded-md transition-colors md:hidden hover:bg-white/10"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -92,7 +89,7 @@ export default function Header() {
         {/* Mobile Navigation */}
         {isMounted && isMenuOpen && (
           <motion.div
-            className="md:hidden absolute top-full left-0 right-0 bg-gradient-to-r from-blue-900/95 via-purple-900/95 to-pink-900/95 backdrop-blur-sm py-2 shadow-lg"
+            className="absolute right-0 left-0 top-full py-2 bg-gradient-to-r shadow-lg backdrop-blur-sm md:hidden from-blue-900/95 via-purple-900/95 to-pink-900/95"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
           >
@@ -100,7 +97,8 @@ export default function Header() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="block py-3 px-4 font-montserrat text-white/90 hover:text-white hover:bg-white/10 transition-all"
+                className={`block py-3 px-4 font-montserrat text-white/90 hover:text-white hover:bg-white/10 transition-all
+                  ${item.name === 'Admin' ? 'border-t border-white/20' : ''}`} // Estilo especial para Admin
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item.name}
