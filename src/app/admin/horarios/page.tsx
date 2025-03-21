@@ -5,7 +5,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { ptBR } from 'date-fns/locale/pt-BR'; // Importa la localización
 import { registerLocale, setDefaultLocale } from 'react-datepicker';
 import Link from 'next/link';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 interface Horario {
@@ -117,15 +117,6 @@ toast.success(`🔓 ${selectedIds.length} horários desbloqueados com sucesso!`,
     setSelectedIds((prevIds) =>
       prevIds.includes(id) ? prevIds.filter((prevId) => prevId !== id) : [...prevIds, id]
     );
-  };
-
-  // Confirmar cambios y volver al paso 1
-  const confirmarCambios = () => {
-    alert('Cambios guardados correctamente.');
-    setStep(1); // Volver al paso 1 (Seleccionar fecha)
-    setSelectedDate(null); // Reiniciar la fecha seleccionada
-    setHorarios([]); // Reiniciar los horarios
-    setSelectedIds([]); // Reiniciar la selección de horarios
   };
 
   return (
